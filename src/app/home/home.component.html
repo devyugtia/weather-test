@@ -1,0 +1,29 @@
+<div class="container">
+
+  <div class="row mt-4 justify-content-center">
+    <div class="col-6">
+      <div class="input-group mb-3">
+        <input type="text" [(ngModel)]="keyword" #ctrl="ngModel" class="form-control" placeholder="Search City"
+          aria-label="Search City" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <weather [result]="result" [weather_data]="weather_data" [isSearch]="isSearch"></weather>
+
+  <div class="text-center" *ngIf="isLoading">
+    <fa name=" fa-spinner" animation="spin" style="font-size: 50px;"></fa>
+  </div>
+
+  <div class="row mt-4 justify-content-center" *ngIf="!isLoading && result.length == 0">
+    <div class="col-6">
+      <div class="mb-3 text-center">
+        <h3>No Result Found</h3>
+      </div>
+    </div>
+  </div>
+
+</div>

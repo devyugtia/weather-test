@@ -1,0 +1,32 @@
+<div class="card mb-4" *ngFor="let city of result; let i = index">
+  <div class="card-body">
+    <h5 class="card-title" style="cursor: pointer;" (click)="showDetails(city.woeid)">{{i+1}}. {{city.title}}</h5>
+    
+    <div class="card-text text-center" *ngIf="!weather_data[i] && !isSearch">
+      <fa name=" fa-spinner" animation="spin" style="font-size: 50px;"></fa>
+    </div>
+
+    <div class="card-text row">
+      <div class="col" *ngFor="let data of weather_data[i]?.consolidated_weather; let j = index;">
+        <fa name=" fas fa-sun" *ngIf="data.weather_state_name == 'Clear'" style="font-size: 50px; color: orange;">
+        </fa>
+        <fa name=" fa-cloud" *ngIf="data.weather_state_name == 'Heavy Cloud'" style="font-size: 50px; color: gray;">
+        </fa>
+        <fa name=" fa-cloud-sun" *ngIf="data.weather_state_name == 'Light Cloud'"
+          style="font-size: 50px; color: lightskyblue;">
+        </fa>
+        <fa name=" fas fa-cloud-sun-rain" *ngIf="data.weather_state_name == 'Light Rain'"
+          style="font-size: 50px; color: gray;"></fa>
+        <fa name=" fas fa-cloud-showers-heavy" *ngIf="data.weather_state_name == 'Heavy Rain'"
+          style="font-size: 50px; color: gray;"></fa>
+        <fa name=" fas fa-cloud-rain" *ngIf="data.weather_state_name == 'Showers'"
+          style="font-size: 50px; color: gray;"></fa>
+        <p> {{data.weather_state_name}}</p>
+        <p> {{data.applicable_date}} </p>
+        <p> <b> Temp </b> : {{(data.the_temp).toFixed()}}</p>
+        <p> <b> Max Temp </b> : {{(data.max_temp).toFixed()}}</p>
+        <p> <b> Min Temp </b> : {{(data.min_temp).toFixed()}}</p>
+      </div>
+    </div>
+  </div>
+</div>
